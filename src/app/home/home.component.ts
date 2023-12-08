@@ -1,13 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HousingLocationComponent } from '../housing-location/housing-location.component';
-import { AboutComponent } from '../about/about.component';
-import { NavgationcomponentComponent } from '../navgationcomponent/navgationcomponent.component';
-import { HousingLocation } from '../housing.location';
-import { HousingService } from '../housing.service';
+import { Component, inject } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HousingLocationComponent } from "../housing-location/housing-location.component";
+import { AboutComponent } from "../about/about.component";
+import { NavgationcomponentComponent } from "../navgationcomponent/navgationcomponent.component";
+import { HousingLocation } from "../housing.location";
+import { HousingService } from "../housing.service";
 
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   standalone: true,
   imports: [
     CommonModule,
@@ -18,17 +18,20 @@ import { HousingService } from '../housing.service';
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Filter by city">
+        <input type="text" placeholder="Filter by city" />
         <button class="primary" type="button">Search</button>
       </form>
     </section>
     <section class="results">
-      <app-housing-location *ngFor= "let housingLocation of housingLocationList" [housingLocation] = "housingLocation"></app-housing-location>
+      <app-housing-location
+        *ngFor="let housingLocation of housingLocationList"
+        [housingLocation]="housingLocation"
+      ></app-housing-location>
       <app-about></app-about>
       <app-navgationcomponent></app-navgationcomponent>
     </section>
-    `,
-  styleUrls: ['./home.component.css'],
+  `,
+  styleUrls: ["./home.component.css"],
 })
 export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
