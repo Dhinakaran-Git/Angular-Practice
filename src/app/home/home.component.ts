@@ -19,7 +19,10 @@ import { HousingService } from "../housing.service";
     <section>
       <form>
         <input type="text" placeholder="Filter by city" />
-        <button class="primary" type="button">Search</button>
+        <!-- [(ngModel)]="searchQuery" -->
+        <button class="primary" type="button" (click)="(handleSearch)">
+          Search
+        </button>
       </form>
     </section>
     <section class="results">
@@ -36,7 +39,9 @@ import { HousingService } from "../housing.service";
 export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
   housingService: HousingService = inject(HousingService);
+  searchQuery: any;
 
+  handleSearch(title: string) {}
   constructor() {
     this.housingLocationList = this.housingService.getAllHousingLocations();
   }
