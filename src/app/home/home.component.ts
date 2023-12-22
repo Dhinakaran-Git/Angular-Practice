@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, Input, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HousingLocationComponent } from "../housing-location/housing-location.component";
 import { AboutComponent } from "../about/about.component";
@@ -17,17 +17,16 @@ import { HousingService } from "../housing.service";
   ],
   template: `
     <section>
-      <form>
-        <input type="text" placeholder="Filter by city" />
-        <!-- [(ngModel)]="searchQuery" -->
-        <button class="primary" type="button" (click)="(handleSearch)">
-          Search
-        </button>
-      </form>
+      <input
+        type="text"
+        placeholder="Filter by city"
+        #searchQuery
+        (input)="handleSearch(searchQuery.value)"
+      />
     </section>
     <section class="results">
       <app-housing-location
-        *ngFor="let housingLocation of housingLocationList"
+        *ngFor="let housingLocation of filteredLocations"
         [housingLocation]="housingLocation"
       ></app-housing-location>
       <app-about></app-about>
@@ -38,17 +37,21 @@ import { HousingService } from "../housing.service";
 })
 export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
+  filteredLocations: HousingLocation[] = [];
   housingService: HousingService = inject(HousingService);
-  searchQuery: any;
+  @Input() searchQuery: string = "";
 
-  handleSearch(title: string) {}
+  handleSearch(searchQuery: string) {
+    if (searchQuery.trim() !== "") {
+      this.filteredLocations = this.housingLocationList.filter((location) => {
+        return location.city.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+    } else {
+      this.filteredLocations = this.housingLocationList;
+    }
+  }
   constructor() {
     this.housingLocationList = this.housingService.getAllHousingLocations();
+    this.filteredLocations = this.housingLocationList;
   }
 }
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/
