@@ -43,7 +43,7 @@ export class HomeComponent {
 
   handleSearch(searchQuery: string) {
     if (searchQuery.trim() !== "") {
-      this.filteredLocations = this.housingLocationList.filter((location) => {
+      this.filteredLocations = this.filteredLocations.filter((location) => {
         return location.city.toLowerCase().includes(searchQuery.toLowerCase());
       });
     } else {
