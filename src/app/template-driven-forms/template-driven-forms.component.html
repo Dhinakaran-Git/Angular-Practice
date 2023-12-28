@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h5>Template-driven-forms works!</h5>
+    <div style="margin: 20px">
+      <!-- <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)"> -->
+      <p>
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" name="firstname" ngModel />
+      </p>
+      <p>
+        <label>Last Name</label>
+        <input type="text" id="lastname" name="lastname" ngModel />
+      </p>
+      <p>
+        <label for="email">Email </label>
+        <input type="text" id="email" name="email" ngModel />
+      </p>
+      <p>
+        <label for="gender">Geneder</label>
+        <input type="radio" value="male" id="gender" name="gender" ngModel />
+        Male
+        <input type="radio" value="female" id="gender" name="gender" ngModel />
+        Female
+      </p>
+      <p>
+        <label for="isMarried">Married</label>
+        <input type="checkbox" id="isMarried" name="isMarried" ngModel />
+      </p>
+      <p>
+        <button type="submit">Submit</button>
+      </p>
+      <!-- </form> -->
+    </div>
+  </body>
+</html>

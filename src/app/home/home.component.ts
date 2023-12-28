@@ -1,10 +1,11 @@
-import { Component, Input, inject } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { HousingLocationComponent } from "../housing-location/housing-location.component";
-import { AboutComponent } from "../about/about.component";
-import { NavgationcomponentComponent } from "../navgationcomponent/navgationcomponent.component";
+import { Component, inject } from "@angular/core";
 import { HousingLocation } from "../housing.location";
 import { HousingService } from "../housing.service";
+import { AboutComponent } from "../about/about.component";
+import { TemplateDrivenFormsComponent } from "../template-driven-forms/template-driven-forms.component";
+import { NavgationcomponentComponent } from "../navgationcomponent/navgationcomponent.component";
+import { HousingLocationComponent } from "../housing-location/housing-location.component";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-home",
@@ -14,6 +15,7 @@ import { HousingService } from "../housing.service";
     NavgationcomponentComponent,
     HousingLocationComponent,
     AboutComponent,
+    TemplateDrivenFormsComponent,
   ],
   template: `
     <section>
@@ -29,8 +31,9 @@ import { HousingService } from "../housing.service";
         *ngFor="let housingLocation of filteredLocations"
         [housingLocation]="housingLocation"
       ></app-housing-location>
-      <app-about></app-about>
-      <app-navgationcomponent></app-navgationcomponent>
+      <app-template-driven-forms></app-template-driven-forms>
+      <!-- <app-about></app-about>
+      <app-navgationcomponent></app-navgationcomponent> -->
     </section>
   `,
   styleUrls: ["./home.component.css"],
@@ -39,7 +42,6 @@ export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
   filteredLocations: HousingLocation[] = [];
   housingService: HousingService = inject(HousingService);
-  @Input() searchQuery: string = "";
 
   handleSearch(searchQuery: string) {
     if (searchQuery.trim() !== "") {
